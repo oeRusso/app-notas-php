@@ -1,0 +1,14 @@
+{
+    "name": "estebanr/notas",
+    "autoload": {
+        "psr-4": {
+            "Estebanr\\Notas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "esteban Russo"
+        }
+    ],
+    "require": {}
+}
