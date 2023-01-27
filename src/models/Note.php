@@ -10,7 +10,7 @@ class Note extends Database{
 
     private string $uuid;
 
-    public function __construct(private string $title, private string $content){
+    public function __construct(private string $title='', private string $content = ''){
         parent::__construct();
 
         $this->uuid = uniqid();
@@ -28,6 +28,23 @@ class Note extends Database{
         $query = $this->connect()->prepare("UPDATE notes SET title = :title, content = :content, updated = NOW() WHERE uuid = :uuid");
         $query ->execute(['title' => $this->title, 'uuid' => $this->uuid, 'content' => $this->content]);
 
+    }
+
+    public function delete($uuid)
+    {
+        $query = $this->connect()->prepare("DELETE FROM notes WHERE uuid = :uuid");
+
+        try {
+
+            $query->execute([
+                'uuid'=>$uuid
+            ]);
+
+            // var_dump($item);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
     }
         // ESTO TE TRAE UN REGISTRO DE LA BD SEGUN EL ID Q LE PASES
         public static function get($uuid){

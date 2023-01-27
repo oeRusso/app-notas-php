@@ -4,6 +4,15 @@ use Estebanr\Notas\models\Note;
 
 $notes = Note::getAll();
 
+if (isset($_GET['metodo']) && isset($_GET['uuid'])) {
+    
+    $note = new Note();
+    $note->delete($_GET['uuid']);
+    header('location:./?views=home');
+}
+
+
+
 
 ?>
 
@@ -24,12 +33,17 @@ $notes = Note::getAll();
 
     <?php
     foreach ($notes as $note) {
+       $uuid=  $note->getUUID();
     ?>
-        <a href="?views=view&uuid=<?php echo $note->getUUID(); ?>">
+        <a href="?views=view&uuid=<?php echo $uuid; ?>">
             <div class="note-preview">
                 <div class="title"><?php echo $note->getTitle(); ?></div>
             </div>
         </a>
+        <br>
+        <div>
+                <a href="./<?php echo '?metodo=delete&uuid='.$uuid ?>">Borrar</a>
+        </div>
             
     <?php
     }
