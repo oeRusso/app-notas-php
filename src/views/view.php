@@ -16,6 +16,8 @@ use Estebanr\Notas\models\Note;
 
         $note->updated();
 
+        header("Location:?views=home");
+
 
 
     }else if (isset($_GET['uuid'])) { //aca sino se me actualizan los datos lo q hago es q me siga mostrando los datos antes de la actualizacion

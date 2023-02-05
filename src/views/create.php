@@ -9,6 +9,7 @@ if (count($_POST) > 0) {
 
     $note = new Note($title, $content);
     $note->save();
+    header("Location:?views=home");
     
 
 }

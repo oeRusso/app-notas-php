@@ -35,15 +35,17 @@ if (isset($_GET['metodo']) && isset($_GET['uuid'])) {
     foreach ($notes as $note) {
        $uuid=  $note->getUUID();
     ?>
+    <div class="flex-column">
         <a href="?views=view&uuid=<?php echo $uuid; ?>">
             <div class="note-preview">
                 <div class="title"><?php echo $note->getTitle(); ?></div>
             </div>
         </a>
-        <br>
-        <div>
+        
+        <div class="delete">
                 <a href="./<?php echo '?metodo=delete&uuid='.$uuid ?>">Borrar</a>
         </div>
+    </div>
             
     <?php
     }
